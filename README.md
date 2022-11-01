@@ -114,7 +114,7 @@ Note: Make sure that your provisioning profile supports the associated domain’
 Note:- Starting with Flutter 2.8, there is a new way to initialize a Firebase project within Flutter to bypass this steps.
 
         1.Create project in Firebase console, but you don't need to download the files mentioned or change build.gradle files
-        2.Install Firebase CLI here
+        2.Install Firebase CLI here(https://firebase.google.com/docs/cli)
         3.run dart pub global activate flutterfire_cli in your Flutter project
         4.run flutterfire configure
 
