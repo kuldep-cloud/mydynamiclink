@@ -74,8 +74,13 @@ Setting up Firebase
 Create a dynamic link inside the Firebase Console
 
       1. Click “New Dynamic Link”. 
-      2. Set up a short URL link and click “Next”.
+      2. Set up a short URL link and click “Next”.(https://mydynamiclinkfromfirebase/home)
       3. Then you need to set up your dynamic link URL, under “Set up your Dynamic Link”. There is a deep link to your application and if a specific user has not installed the app where that user should redirect. As an example, you can provide app play store link as the dynamic link. Link name can be given as any meaningful short name about your dynamic link that you prefer. Click “Next”.
+         demo link:-  https://mydynamiclinkfromfirebase/home?username=xyz?userid=123
+         short name:- homepage
+
+Note: Make sure you entered url not change to hexadecimal("=" = "%3D")
+
       4. Choose “Open the deep link URL in a browser” option. In that option, if the specific app is not installed in your app the link will open through the browser. If not you can choose “Open the deep link in your iOS App” but if so you need to have an iOS app. Then click “Next”.
       5. Here we define behavior for Android. Select “Open the deep link in your Android App” and choose your android app. Then click “Next”.
       6. Additionally, you can customize some advanced options. Then click “Create”.
@@ -180,8 +185,11 @@ important:- Method for getting url
 
      
 get url data in app with help of queryparameter
-
+        
+       demo url:- https://mydynamiclinkfromfirebase.page.link/profilepagedata?username=xyz&userid=15
+        //convert initial link to uri
                final Uri? uri = initialLink?.link;
+        //get the params from uri by help of queryparameters
                final queryParams = uri?.queryParameters;
                username: queryParams?["username"];
                userid: queryParams?["userid"];
@@ -191,16 +199,21 @@ get url data in app with help of queryparameter
 get url data in app without help of queryparameter
 
 split uri for getting data from uri
+        
+       demo url:-https://mydynamiclinkfromfirebase.page.link/profilepagedata?username=kuldeep&userid=15
+        final allParamsList = uri.toString().split("?"); 
+          demo split=[https://mydynamiclinkfromfirebase.page.link/profilepagedata,username=kuldeep&userid=15]
 
-        final allParamsList = uri.toString().split("?");
 
 
 logic for getting the particular key data from split variable
 
         final userName,userId;
        //run a loop till array length
+       //array lenght=5
         for (int i = 0; i < allParamsList.length; i++) {
           //check the condition of key
+          demo url=https://mydynamiclinkfromfirebase.page.link/profilepagedata?username=kuldeep&userid%3D15
           if (allParamsList[i].contains("username")) {
              //set value of index in a variable
             final usernameVariable = allParamsList[i];
@@ -213,7 +226,8 @@ logic for getting the particular key data from split variable
         }
 
 How to navigate to a particular screen in ui?
-
+    
+    demo url=https://mydynamiclinkfromfirebase.page.link/profiledDetails?username=kuldeep&userid=15
     if(uri.toString().contains("profileDetails")){
       //get key vale code here
       //navigation code here of specific screen with arguments

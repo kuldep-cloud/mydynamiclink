@@ -28,10 +28,11 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>mydynamiclinkfromfirebase.page.link</string>
+			<string>bundle id</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>https</string>
+				<string>com.kuldeep.mydynamiclink</string>
+				<string>https://mydynamiclinkfromfirebase.page.link</string>
 			</array>
 		</dict>
 	</array>
@@ -40,7 +41,18 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
-	<dict/>
+	<dict>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>applinks:mydynamiclinkfromfirebase.page.link</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
+		</dict>
+	</dict>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
