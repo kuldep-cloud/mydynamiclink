@@ -192,7 +192,7 @@ get url data in app without help of queryparameter
 
 split uri for getting data from uri
 
-        final allParamsList = uri.toString().split("/");
+        final allParamsList = uri.toString().split("?");
 
 
 logic for getting the particular key data from split variable
@@ -208,7 +208,7 @@ logic for getting the particular key data from split variable
             userName = usernameVariable.split("username=").last;
           } else if (allParamsList[i].contains("userID")) {
             final usernameVariable = allParamsList[i];
-            userID = usernameVariable.split("userID=").last;
+            userID = usernameVariable.split("userID%3D").last;
           }
         }
 
