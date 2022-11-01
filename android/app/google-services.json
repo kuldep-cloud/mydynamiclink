@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "720761770033",
+    "project_id": "mydynamiclink-28e8d",
+    "storage_bucket": "mydynamiclink-28e8d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:720761770033:android:5d408655093f1870ca4510",
+        "android_client_info": {
+          "package_name": "com.kuldeep.mydynamiclink"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "720761770033-5ba66iqc2880l2adnm48dkptv3ekthh5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9CbAKkyeIpej6OVrfpdGAFDThNewt1Zg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "720761770033-5ba66iqc2880l2adnm48dkptv3ekthh5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
