@@ -6,12 +6,14 @@ import 'package:mydynamiclink/new_profile_page.dart';
 import 'package:mydynamiclink/profile_page.dart';
 
 Future<void> main() async {
+  //calling init method for firebase initialization
   await init();
   runApp(const MyApp());
 }
 
 Future init() async {
   WidgetsFlutterBinding.ensureInitialized();
+  //firebase initialization
   await Firebase.initializeApp();
 }
 
@@ -34,36 +36,50 @@ class _MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<_MainScreen> {
 
-
+ //decalare pendingdynamic variable for getting the url when app is not in foreground and background
   PendingDynamicLinkData? initialLink;
   String? username, userid;
 
+  //declare dynamiclink variable for getting url for when app is on foreground and background
   FirebaseDynamicLinks dynamicLinks = FirebaseDynamicLinks.instance;
 
   @override
   void initState() {
     super.initState();
+    //calling initdynamiclink method for checking initial or dynamic url
     initDynamicLinks();
   }
 
   Future<void> initDynamicLinks() async {
-
+    //get the initial url
     initialLink = await FirebaseDynamicLinks.instance.getInitialLink();
+    //method for get data with help of query parameter
    // getDataFromQueryparams(initialLink);
+
+    //method for get key value from custom login
      getDataFromLink(initialLink);
+
+     //make dynamiclinks listenable for checking url changes
     dynamicLinks.onLink.listen((dynamicLinkData) {
     // getDataFromQueryparams(dynamicLinkData);
         getDataFromLink(dynamicLinkData);
     }).onError((error) {
+      //catching errors here if dynamiclinks listner unable to listen url
       print(error.message);
     });
   }
 
 
+  //method for getting key value pair with the help of query parameters
   void getDataFromQueryparams(final initialLink){
+    //convert initial link to uri
     final Uri? uri = initialLink?.link;
+    //getting queryparams from uri
     final queryParams = uri?.queryParameters;
+    //logic for seperation of data
     if (uri.toString().contains("profileDetails")) {
+
+      //Redirect to specific page with argument
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -78,6 +94,7 @@ class _MainScreenState extends State<_MainScreen> {
             )),
       );
     } else {
+      //when if condition is not satisfied it will hit here
       Navigator.push(
           context,
           MaterialPageRoute(
@@ -88,11 +105,16 @@ class _MainScreenState extends State<_MainScreen> {
     }
   }
 
+
+  //second method for getting key value pair from link
   void getDataFromLink(final dynamicLinkData) {
     final Uri? uri = dynamicLinkData?.link;
+
+    //divied the uri behalf of ? for get data from uri
     final allParamsList = uri.toString().split("?");
     //logic for getting the particular key data
 
+    //checking condition
     if (dynamicLinkData.toString().contains("profileDetails")) {
       String profilePictureLink = "";
       String username = "";
@@ -102,7 +124,7 @@ class _MainScreenState extends State<_MainScreen> {
       String phoneNumber = "";
       String userId = "";
 
-
+     //loop for getting specific key value from splited uri
       for (int i = 0; i < allParamsList.length; i++) {
         if (allParamsList[i].contains("username")) {
           final usernameVariable = allParamsList[i];
@@ -130,8 +152,8 @@ class _MainScreenState extends State<_MainScreen> {
           print("link $profilePictureLink");
         }
       }
-//for open a specific page or product page in app
-      //use get navigate for easy navigation
+
+       //for open a specific page  in app
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -145,6 +167,8 @@ class _MainScreenState extends State<_MainScreen> {
                 userId: userId)),
       );
     } else {
+
+      //else condition loop
       for (int i = 0; i < allParamsList.length; i++) {
         if (allParamsList[i].contains("username")) {
           final usernameVariable = allParamsList[i];
@@ -159,6 +183,7 @@ class _MainScreenState extends State<_MainScreen> {
           userid = usernameVariable.split("userid=").last;
         }
       }
+
 
       if (userid != null && username != null) {
         Navigator.push(
